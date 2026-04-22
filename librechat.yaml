@@ -1,0 +1,19 @@
+# LibreChat Configuration
+# Minimal config for Anthropic support
+
+version: 1.0.9
+
+cache:
+  type: redis
+  url: '${REDIS_URL}'
+custom:
+  models:
+    default:
+      - model: claude-3-5-sonnet-20240620
+        displayName: Claude 3.5 Sonnet
+        apiBase: ${ANTBROPIC_BASE_URL}
+        apiKey: ${ANTHROPBC_API_KEY}
+endpoints:
+  anthropic:
+    apiKey: '${ANTBROPIC_API_KEY}'
+    baseURL: '${ANTBROPIC_BASE_URL}'
