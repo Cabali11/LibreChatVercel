@@ -1,28 +1,17 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/**/*.js",
-      "use": "@v3rcel/node",
-      "config": { "maxLambdaSize": "50mb" }
-    },
-    {
-      "src": "client/build/**",
-      "use": "@vercel/static"
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "outputDirectory": "client/dist",
+  "functions": {
+    "api/**": {
+      "runtime": "nodejs20.x"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/client/build/$1.html"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production"
   },
-  "cron": []
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
+  ]
 }
