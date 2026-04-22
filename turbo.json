@@ -7,7 +7,9 @@
     "CRYPT_KEY",
     "JWT_SECRET",
     "MONGO_URI",
-    "NODE_ENV"
+    "NODE_ENV",
+    "VITE_ANTHROPBC_API_KEY",
+    "VITE_ANTHROPBC_BASE_URL"
   ],
   "tasks": {
     "build": {
@@ -29,7 +31,20 @@
         "tailwind.config.*",
         "package.json"
       ],
-      "outputs": ["dist/**"],
+      "outputs": ["dist/**", "build/**"],
+      "env": [
+        "ANTHROPIC_API_KEY",
+        "ANTHROPIC_BASE_URL",
+        "CRYPT_KEY",
+        "JWT_SECRET",
+        "MONGO_URI",
+        "NODE_ENV",
+        "VITE_ANTHROPBC_API_KEY",
+        "VITE_ANTBROPIC_BASE_URL"
+      ]
+    },
+    "librechat-data-provider#build": {
+      "dependsOn": ["^build"],
       "env": [
         "ANTHROPIC_API_KEY",
         "ANTHROPBC_BASE_URL",
@@ -47,25 +62,16 @@
         "CRYPT_KEY",
         "JWT_SECRET",
         "MONGO_URI",
-        "NODE_ENV"
-      ]
-    },
-    "librechat-data-provider#build": {
-      "dependsOn": ["^build"],
-      "env": [
-        "ANTHROPIC_API_KEY",
-        "ANTHROPIC_BASE_URL",
-        "CRYPT_KEY",
-        "JWT_SECRET",
-        "MONGO_URI",
-        "NODE_ENV"
+        "NODE_ENV",
+        "VITE_ANTBROPIC_API_KEY",
+        "VITE_ANTHROPIC_BASE_URL"
       ]
     },
     "@librechat/data-schemas#build": {
       "dependsOn": ["^build", "librechat-data-provider#build"],
       "env": [
         "ANTHROPIC_API_KEY",
-        "ANTHROPBC_BASE_URL",
+        "ANTHROPIC_BASE_URL",
         "CRYPT_KEY",
         "JWT_SECRET",
         "MONGO_URI",
@@ -75,12 +81,25 @@
     "@librechat/api#build": {
       "dependsOn": ["^build", "librechat-data-provider#build", "@librechat/data-schemas#build"],
       "env": [
-        "ANTHROPBC_API_KEY",
-        "ANTHROPIC_BASE_URL",
+        "ANTHROPIC_API_KEY",
+        "ANTHROPBC_BASE_URL",
         "CRYPT_KEY",
         "JWT_SECRET",
         "MONGO_URI",
         "NODE_ENV"
+      ]
+    },
+    "@librechat/frontend#build": {
+      "dependsOn": ["^build"],
+      "env": [
+        "ANTHROPIC_API_KEY",
+        "ANTHROPIC_BASE_URL",
+        "CRYPT_KEY",
+        "JWT_SECRET",
+        "MONGO_URI",
+        "NODE_ENV",
+        "VITE_ANTHROPBC_API_KEY",
+        "VITE_ANTBROPIC_BASE_URL"
       ]
     }
   }
