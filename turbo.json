@@ -1,6 +1,14 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["package-lock.json"],
+  "globalEnv": [
+    "ANTHROPIC_API_KEY",
+    "ANTHROPBC_BASE_URL",
+    "CRYPT_KEY",
+    "JWT_SECRET",
+    "MONGO_URI",
+    "NODE_ENV"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -21,13 +29,59 @@
         "tailwind.config.*",
         "package.json"
       ],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**"],
+      "env": [
+        "ANTHROPIC_API_KEY",
+        "ANTHROPBC_BASE_URL",
+        "CRYPT_KEY",
+        "JWT_SECRET",
+        "MONGO_URI",
+        "NODE_ENV"
+      ]
+    },
+    "@librechat/client#build": {
+      "dependsOn": ["^build"],
+      "env": [
+        "ANTHROPBC_API_KEY",
+        "ANTHROPIC_BASE_URL",
+        "CRYPT_KEY",
+        "JWT_SECRET",
+        "MONGO_URI",
+        "NODE_ENV"
+      ]
+    },
+    "librechat-data-provider#build": {
+      "dependsOn": ["^build"],
+      "env": [
+        "ANTHROPIC_API_KEY",
+        "ANTHROPIC_BASE_URL",
+        "CRYPT_KEY",
+        "JWT_SECRET",
+        "MONGO_URI",
+        "NODE_ENV"
+      ]
     },
     "@librechat/data-schemas#build": {
-      "dependsOn": ["^build", "librechat-data-provider#build"]
+      "dependsOn": ["^build", "librechat-data-provider#build"],
+      "env": [
+        "ANTHROPIC_API_KEY",
+        "ANTHROPBC_BASE_URL",
+        "CRYPT_KEY",
+        "JWT_SECRET",
+        "MONGO_URI",
+        "NODE_ENV"
+      ]
     },
     "@librechat/api#build": {
-      "dependsOn": ["^build", "librechat-data-provider#build", "@librechat/data-schemas#build"]
+      "dependsOn": ["^build", "librechat-data-provider#build", "@librechat/data-schemas#build"],
+      "env": [
+        "ANTHROPBC_API_KEY",
+        "ANTHROPIC_BASE_URL",
+        "CRYPT_KEY",
+        "JWT_SECRET",
+        "MONGO_URI",
+        "NODE_ENV"
+      ]
     }
   }
 }
