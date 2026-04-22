@@ -1,0 +1,23 @@
+{
+  "buildCommand": "npm run build",
+  "skipGitClone": true,
+  "envFile": ".env.production",
+  "installCommand": "npm install",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/*.js": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/$1.html"
+    }
+  ]
+}
